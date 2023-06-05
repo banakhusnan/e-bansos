@@ -10,13 +10,16 @@
     <div class="card-body">
         <div class="d-flex align-items-center gap-4">
             <div class="flex-shrink-0 user-select-none">
-                <img src="{{ url('/sneat/assets/img/avatars/1.png') }}" alt="user-avatar" height="100" width="100" />
+                <img src="{{ url('/assets/assets/img/avatars/1.png') }}" class="rounded" alt="user-avatar" height="100"
+                    width="100" />
             </div>
 
             <div class="flex-grow-1 user-select-none">
                 <div class="d-flex align-items-center gap-2">
                     <b class="fs-4">{{ auth()->user()->name }}</b>
+                    @if (!empty($detailUser->status) && $detailUser->status == 1)
                     <small title=""><i class="bi bi-patch-check-fill text-primary"></i></small>
+                    @endif
                 </div>
 
                 <span class="d-block fw-bold">{{ ucfirst(auth()->user()->getRoleNames()[0]) }}</span>
@@ -42,29 +45,37 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="d-block align-items-center mb-3">
-                        <p class="fw-bold mb-0">First Name</p>
+                        <p class="fw-bold mb-0">Nama Awal</p>
                         <p>{{ $name[0] }}</p>
                     </div>
                     <div class="d-block align-items-center mb-3">
-                        <p class="fw-bold mb-0">Last Name</p>
+                        <p class="fw-bold mb-0">Nama Akhir</p>
                         <p>{{ implode(' ', array_slice($name, 1, count($name))) }}</p>
                     </div>
                     <div class="d-block align-items-center mb-3">
-                        <p class="fw-bold mb-0">Email Adress</p>
+                        <p class="fw-bold mb-0">Email</p>
                         <p>{{ auth()->user()->email }}</p>
+                    </div>
+                    <div class="d-block align-items-center mb-3">
+                        <p class="fw-bold mb-0">Alamat</p>
+                        <p>{{ $detailUser->address ?? '-' }}</p>
                     </div>
                 </div>
                 <div class="col-md-5">
                     <div class="d-block align-items-center mb-3">
-                        <p class="fw-bold mb-0">Adress</p>
-                        <p>{{ $detailUser->address ?? '-' }}</p>
+                        <p class="fw-bold mb-0">Pekerjaan</p>
+                        <p>{{ $detailUser->job ?? '-' }}</p>
                     </div>
                     <div class="d-block align-items-center mb-3">
-                        <p class="fw-bold mb-0">Date of Birth</p>
+                        <p class="fw-bold mb-0">NIK</p>
+                        <p>{{ $detailUser->nik ?? '-' }}</p>
+                    </div>
+                    <div class="d-block align-items-center mb-3">
+                        <p class="fw-bold mb-0">Tanggal Lahir</p>
                         <p>{{ $detailUser->date_of_birth ?? '-' }}</p>
                     </div>
                     <div class="d-block align-items-center mb-3">
-                        <p class="fw-bold mb-0">Phone Number</p>
+                        <p class="fw-bold mb-0">Nomor Handphone</p>
                         <p>{{ $detailUser->no_handphone ?? '-' }}</p>
                     </div>
                 </div>
