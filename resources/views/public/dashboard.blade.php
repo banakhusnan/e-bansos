@@ -19,8 +19,9 @@
                 </div>
                 <div class="col-sm-4 text-center text-sm-left">
                     <div class="card-body pb-0 px-0 px-md-4">
-                        <img src="{{ asset('/sneat/assets/img/illustrations/man-with-laptop-light.png') }}" height="140"
-                            alt="View Badge User" data-app-dark-img="illustrations/man-with-laptop-dark.png"
+                        <img src="{{ asset('/assets/assets/img/illustrations/man-with-laptop-light.png') }}"
+                            height="140" alt="View Badge User"
+                            data-app-dark-img="illustrations/man-with-laptop-dark.png"
                             data-app-light-img="illustrations/man-with-laptop-light.png" />
                     </div>
                 </div>
@@ -32,8 +33,8 @@
             <div class="card-body">
                 <div class="card-title d-flex align-items-start justify-content-between">
                     <div class="avatar flex-shrink-0">
-                        <img src="{{ URL::asset('/sneat/assets/img/icons/unicons/wallet-info.png') }}" alt="Credit Card"
-                            class="rounded" />
+                        <img src="{{ URL::asset('/assets/assets/img/icons/unicons/wallet-info.png') }}"
+                            alt="Credit Card" class="rounded" />
                     </div>
 
                     <div class="dropdown">
@@ -71,26 +72,18 @@
 </div>
 <div class="row">
     <div class="col-md-4 mb-3">
-        <div class="card">
-            <div class="card-body">
-                <div class="d-flex align-items-start justify-content-between mb-3">
-                    <img src="{{ url('https://web.pln.co.id/statics/img/logo-header-20170501a.jpg') }}" alt="PLN" />
-
-                    <div class="dropdown">
-                        <button class="btn p-0" type="button" id="cardOpt6" data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <i class="bx bx-dots-vertical-rounded"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
-                            <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                            <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                        </div>
+        <a role="button" class="" data-bs-toggle="modal" data-bs-target="#pembayaranListrik">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-start justify-content-between mb-3">
+                        <img src="{{ url('http://waru-sukoharjo.desa.id/wp-content/uploads/sites/87/2017/11/Logo-Listrik-Pintar-PLN-prabayar-577x332-300x173.jpg') }}"
+                            height="67px" alt="PLN" />
                     </div>
+                    <span>Pembayaran Listrik</span>
+                    <h3 class="card-title text-nowrap mb-1">PLN</h3>
                 </div>
-                <span>Pembayaran Listrik</span>
-                <h3 class="card-title text-nowrap mb-1">PLN</h3>
             </div>
-        </div>
+        </a>
     </div>
     <div class="col-md-4 mb-3">
         <div class="card">
@@ -139,6 +132,9 @@
     </div>
 </div>
 
+@include('public.components.modal-listrik')
+@include('public.components.modal-welcome')
+
 @push('js')
 <script>
     document.addEventListener("DOMContentLoaded", function(){
@@ -149,6 +145,29 @@
 
         myToast.show();
     });
+
+    const nominal = document.querySelectorAll('#nominal')
+    let totalNominal = 0;
+
+    nominal.forEach(element => {
+        element.parentElement.addEventListener('click', ()=>{
+            element.parentElement.classList.toggle('bg-secondary')
+            element.parentElement.classList.toggle('text-white')
+            
+            const nominalInt = parseInt(element.innerText.replace('Rp', '').replace('.', ''))
+            if (!element.parentElement.classList.contains('bg-secondary') && totalNominal > 0) {
+                totalNominal -= nominalInt;
+                return false;
+            } else if(!element.parentElement.classList.contains('bg-secondary') && totalNominal == 0){
+                totalNominal = 0;
+            }
+            totalNominal += nominalInt;
+
+            const inputTotalNominal = document.getElementsByName('totalNominal')[0]
+            inputTotalNominal.value = totalNominal
+        })
+    });
+
 </script>
 @endpush
 @endsection
