@@ -18,6 +18,8 @@ class UpdateUserHelper {
             'no_handphone' => $query['no_handphone'],
             'date_of_birth' => $query['date_of_birth'],
             'address' => $query['address'],
+            'nik' => $query['nik'],
+            'job' => $query['job'],
         ]);
     }
 }
