@@ -22,6 +22,8 @@ class ProfileUpdateRequest extends FormRequest
             'no_handphone' => ['numeric', 'min:10'],
             'date_of_birth' => ['date'],
             'address' => ['string'],
+            'nik' => ['required', 'min:16','max:16'],
+            'job' => ['required']
         ];
     }
 }
