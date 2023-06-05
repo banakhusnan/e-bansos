@@ -19,7 +19,8 @@ return new class extends Migration
             $table->date('date_of_birth')->nullable();
             $table->string('no_handphone', 15)->nullable();
             $table->string('job')->nullable();
-            $table->boolean('status')->default(0);
+            $table->boolean('status_pendaftaran')->default(0);
+            $table->enum('status_bansos', ['berhasil', 'gagal', 'proses']);
             $table->timestamps();
         });
     }
