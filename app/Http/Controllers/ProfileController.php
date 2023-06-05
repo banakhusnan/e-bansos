@@ -41,11 +41,6 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function detailUserUpdate(DetailUserUpdateRequest $request)
-    {
-        $validated = $request->validated();
-    }
-
     /**
      * Update the user's profile information.
      */
@@ -61,7 +56,17 @@ class ProfileController extends Controller
         array_splice($validator, 0,2);
 
         // Add +62 in first text
-        $validator['no_handphone'] = '+62' . $validator['no_handphone'];    
+        $prefix = '+62';
+
+        if($validator['no_handphone'][0] === '0'){
+            $no_handphone = ltrim($validator['no_handphone'], '0');
+            $validator['no_handphone'] = '+62' . $no_handphone;
+        } elseif (strpos($validator['no_handphone'], $prefix) === 0) {
+            $no_handphone = substr($validator['no_handphone'], strlen($prefix));
+            $validator['no_handphone'] = '+62' . $no_handphone;
+        } elseif($validator['no_handphone'][0] !== '0'){
+            $validator['no_handphone'] = '+62' . $validator['no_handphone'];
+        }
 
         // Update
         UpdateUserHelper::update($validator);
