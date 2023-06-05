@@ -36,7 +36,11 @@
 
                     <!-- Content -->
                     <div class="container-xxl flex-grow-1 container-p-y">
+                        {{-- For user --}}
                         @yield('content')
+
+                        {{-- For admin --}}
+                        @yield('content-admin')
                     </div>
                     <!-- / Content -->
 
