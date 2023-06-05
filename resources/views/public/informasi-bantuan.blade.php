@@ -29,6 +29,7 @@
 @endpush
 
 @section('content')
+@include('layouts.flash')
 <h4 class="fw-bold user-select-none py-3">
     <span class="text-muted fw-light">Bantuan Sosial /</span>
     Informasi Bantuan
@@ -51,12 +52,12 @@
 
                         <div class="item-card">
                             <h6>No Handphone</h6>
-                            <p>{{ $data->no_handphone }}</p>
+                            <p>{{ $data->no_handphone ?? '-' }}</p>
                         </div>
 
                         <div class="item-card mb-0">
                             <h6>Saldo</h6>
-                            <p class="mb-0">Rp 3.000.000</p>
+                            <p class="mb-0">Rp 0</p>
                         </div>
                     </div>
                 </div>
@@ -65,14 +66,22 @@
                 <div class="info-header">
                     <h5 class="fw-bold">Status Bantuan Kamu</h5>
                 </div>
-
                 <div class="info-body">
+                    @if ($data->status_bansos === 'berhasil')
                     <p class="fs-5">
                         Mendapat bantuan <i class="bi bi-patch-check-fill text-primary"></i>
                     </p>
+                    @elseif($data->status_bansos === 'gagal')
                     <p class="fs-5">
-                        Tidak Mendapat bantuan <i class='bx bxs-x-circle text-danger'></i>
+                        Tidak mendapat bantuan <i class='bx bxs-x-circle text-danger'></i>
                     </p>
+                    @elseif($data->status_bansos === 'proses')
+                    <p class="fs-5">
+                        Bantuan kamu sedang diproses <i class='bx bxs-time text-warning'></i>
+                    </p>
+                    @else
+                    ok
+                    @endif
                 </div>
             </div>
         </div>
