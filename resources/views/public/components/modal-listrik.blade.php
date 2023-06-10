@@ -3,7 +3,6 @@
     aria-labelledby="pembayaranListrikLabel" aria-hidden="true">
     <form action="{{ route('pembayaran.listrik') }}" method="post" id="formListrik">
         @csrf
-        <input type="hidden" name="totalNominal" value="">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -100,8 +99,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <div class="modal-footer d-flex justify-content-between align-items-center border-top pt-3">
+                    <div>
+                        <h6 class="mb-2">Nominal</h6>
+                        <p id="totalNominal" class="mb-0">Rp 0</p>
+                    </div>
                     <button type="submit" class="btn btn-primary" onclick="submitListrik()">Beli</button>
                 </div>
             </div>

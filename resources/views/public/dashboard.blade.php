@@ -162,12 +162,23 @@
                 totalNominal = 0;
             }
             totalNominal += nominalInt;
+            const formatter = switchToRupiah(totalNominal)
 
-            const inputTotalNominal = document.getElementsByName('totalNominal')[0]
-            inputTotalNominal.value = totalNominal
+            const inputTotalNominal = document.getElementById('totalNominal')
+            inputTotalNominal.textContent = formatter
         })
     });
 
+    function switchToRupiah(number) {
+        let rupiah = number.toString();
+        let thousandSeparator = '.';
+        let rupiahSymbol = 'Rp ';
+
+        rupiah = rupiah.replace(/\D/g, '');
+        rupiah = rupiah.replace(/(\d)(?=(\d{3})+(?!\d))/g, `$1${thousandSeparator}`);
+        
+        return rupiahSymbol + rupiah;
+    }
 </script>
 @endpush
 @endsection

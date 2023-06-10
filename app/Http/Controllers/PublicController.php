@@ -12,4 +12,9 @@ class PublicController extends Controller
             'title' => 'Dashboard',
         ]);
     }
+
+    public function pembayaranListrik(Request $request)
+    {
+        dd($request);
+    }
 }

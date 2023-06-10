@@ -21,7 +21,11 @@
         <div class="layout-container">
 
             <!-- Menu -->
-            @include('layouts.app-partials.menu-bar')
+            @if (auth()->user()->hasRole('admin'))
+            @include('layouts.app-partials.menu-bar-admin')
+            @elseif(auth()->user()->hasRole('public'))
+            @include('layouts.app-partials.menu-bar-public')
+            @endif
             <!-- / Menu -->
 
             <!-- Layout container -->
