@@ -7,6 +7,7 @@ use App\Http\Controllers\PublicController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BantuanSosialController;
 use App\Http\Controllers\KelolaPenggunaController;
+use App\Http\Controllers\KelolaPendaftaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// For Role Admin
 Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function(){
     Route::controller(AdminController::class)->name('admin.')->group(function(){
         Route::get('/dashboard', 'index')->name('dashboard');
@@ -32,22 +34,24 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function(){
         Route::get('/chart', 'statistics');
     });
 
+    // Kelola Pengguna
     Route::controller(KelolaPenggunaController::class)->name('kelola-pengguna.')->group(function(){
         // Modal
         Route::get('/pengguna/{id}', 'getPengguna');
-
+        
         Route::get('/kelola-pengguna', 'index')->name('index');
+    });
+    
+    // Kelola Pendaftaran
+    Route::controller(KelolaPendaftaranController::class)->name('pendaftaran-admin.')->group(function(){
+        // Modal
+        Route::get('/pendaftaran/{id}', 'getPendaftaran');
 
+        Route::get('/kelola-pendaftaran', 'index')->name('index');
     });
 });
 
-Route::controller(ProfileController::class)->name('profile.')->prefix('profile')->group(function () {
-    Route::get('/', 'index')->name('index');
-    Route::get('/edit', 'edit')->name('edit');
-    Route::put('/edit', 'update')->name('update');
-    Route::delete('/', 'destroy')->name('destroy');
-});
-
+// For Role Public
 Route::group(['middleware' => ['auth', 'role:public']], function() {
     Route::get('/dashboard', [PublicController::class, 'index'])->name('dashboard');
     Route::post('/bayar-listrik', [PublicController::class, 'pembayaranListrik'])->name('pembayaran.listrik');
@@ -58,6 +62,14 @@ Route::group(['middleware' => ['auth', 'role:public']], function() {
         Route::post('/pendaftaran', 'pendaftaranStore');
         Route::delete('/', 'destroy')->name('destroy');
     });
+});
+
+// Profile
+Route::controller(ProfileController::class)->name('profile.')->prefix('profile')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/edit', 'edit')->name('edit');
+    Route::put('/edit', 'update')->name('update');
+    Route::delete('/', 'destroy')->name('destroy');
 });
 
 require __DIR__.'/auth.php';

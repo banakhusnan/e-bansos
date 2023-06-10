@@ -16,4 +16,9 @@ class Registration extends Model
     protected $casts = [
         'bansos_state' => BansosStateEnum::class
     ];
+
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

@@ -28,21 +28,12 @@
                 <div data-i18n="Analytics">Kelola Pengguna</div>
             </a>
         </li>
-
-        <!-- Layouts -->
-        {{-- <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
-                <div data-i18n="Layouts">Kelola Pengguna</div>
+        <li class="menu-item {{ Route::is('pendaftaran-admin.*') ? 'active' : '' }}">
+            <a href="{{ route('pendaftaran-admin.index') }}" class="menu-link">
+                <i class="menu-icon tf-icon bi bi-file-check-fill mb-0"></i>
+                <div data-i18n="Analytics">Pendaftaran</div>
             </a>
+        </li>
 
-            <ul class="menu-sub">
-                <li class="menu-item {{ Route::is('bansos.informasi-bantuan') ? 'active' : '' }}">
-                    <a href="{{ route('bansos.informasi-bantuan') }}" class="menu-link">
-                        <div data-i18n="Without menu"></div>
-                    </a>
-                </li>
-            </ul>
-        </li> --}}
     </ul>
 </aside>
