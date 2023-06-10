@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\View\View;
 use App\Models\DetailUser;
 use Illuminate\Http\Request;
+use App\Helper\CreateUserHelper;
 use Illuminate\Validation\Rules;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
@@ -37,15 +38,7 @@ class RegisteredUserController extends Controller
     {
         $validator = $request->validated();
 
-        $user = User::create([
-            'name' => $validator['name'],
-            'email' => $validator['email'],
-            'password' => Hash::make($validator['password']),
-        ]);
-
-        DetailUser::create([
-            'user_id' => $user->id,
-        ]);
+        $user = CreateUserHelper::create($validator);
 
         $user->assignRole('public');
 

@@ -19,11 +19,10 @@ class DetailUserResource extends JsonResource
         return [
             'name' => $this->users->name,
             'role' => $this->users->getRoleNames()[0],
-            'alamat' => $this->alamat,
+            'alamat' => $this->address,
             'namaAwal' => $name[0],
             'namaAkhir' => implode(' ' ,array_slice($name, 1, count($name))),
             'email' => $this->users->email,
-            'alamat' => $this->alamat,
             'job' => $this->job,
             'nik' => $this->nik,
             'date_of_birth' => $this->date_of_birth,

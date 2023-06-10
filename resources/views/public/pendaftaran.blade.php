@@ -39,8 +39,8 @@
                     simpan dengan aman.
                 </p>
                 <div class="rounded p-4" style="background-color: #FFDE16" role="alert">
-                    <h4 class="d-flex align-items-center fw-bold mb-2"><i
-                            class="bi bi-exclamation-circle-fill fs-4 me-2"></i>
+                    <h4 class="d-flex align-items-center fw-bold mb-2">
+                        <i class="bi bi-exclamation-circle-fill fs-4 me-2"></i>
                         Perhatian!
                     </h4>
                     <p class="mb-0">Pastikan kamu mengumpulkan dokumen sesuai ketentuan, ya!</p>

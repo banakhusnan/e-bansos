@@ -67,20 +67,25 @@
                     <h5 class="fw-bold">Status Bantuan Kamu</h5>
                 </div>
                 <div class="info-body">
-                    @if ($data->status_bansos === 'berhasil')
+                    @if ($state->value === 'success')
                     <p class="fs-5">
                         Mendapat bantuan <i class="bi bi-patch-check-fill text-primary"></i>
                     </p>
-                    @elseif($data->status_bansos === 'gagal')
+                    @elseif($state->value === 'fail')
                     <p class="fs-5">
                         Tidak mendapat bantuan <i class='bx bxs-x-circle text-danger'></i>
                     </p>
-                    @elseif($data->status_bansos === 'proses')
+                    @elseif($state->value === 'process')
                     <p class="fs-5">
                         Bantuan kamu sedang diproses <i class='bx bxs-time text-warning'></i>
                     </p>
                     @else
-                    ok
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-exclamation-circle-fill text-warning fs-1 fw-bold me-3"></i>
+                        <p class="fs-5 mb-0">
+                            Anda belum mendaftarkan diri, segera daftarkan diri anda.
+                        </p>
+                    </div>
                     @endif
                 </div>
             </div>

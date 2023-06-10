@@ -9,7 +9,6 @@ detailButton.forEach((element) => {
             success: (res) => {
                 const response = res.data;
                 modalDetailUser(response);
-                console.log(response);
             },
             error: (e) => {
                 console.log(e);
@@ -31,6 +30,7 @@ detailButton.forEach((element) => {
         const date_of_birth = modal.querySelector("#date_of_birth");
         const no_handphone = modal.querySelector("#no_handphone");
 
+        console.log(data);
         nama.textContent = data.name;
         role.textContent = data.role;
         alamat.textContent = data.alamat ? data.alamat : "-";

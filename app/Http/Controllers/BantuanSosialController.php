@@ -3,17 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\DetailUser;
+use App\Models\Registration;
 use Illuminate\Http\Request;
+// use Illuminate\Routing\Controller;
 
 class BantuanSosialController extends Controller
 {
     public function informasiBantuan()
     {
         $dataUser = DetailUser::where('user_id', auth()->user()->id)->first();
+        $registrationData = Registration::where('user_id', auth()->user()->id)->first();
 
         return view('public.informasi-bantuan', [
             'title' => 'Informasi Bantuan',
             'data' => $dataUser,
+            'state' => $registrationData->bansos_state,
         ]);
     }
 
@@ -39,10 +43,11 @@ class BantuanSosialController extends Controller
             return redirect()->route('bansos.pendaftaran')->with('dangerToast', 'Data kamu belum lengkap, harap lengkapi terlebih dahulu');
         }
 
-        DetailUser::where('user_id', auth()->user()->id)->update([
-            'status_pendaftaran' => 1,
-            'status_bansos' => 'proses',
+        Registration::where('user_id', auth()->user()->id)->update([
+            'registration_state' => 1,
+            'bansos_state' => 'process',
         ]);
+        
         return redirect()->route('bansos.informasi-bantuan')->with('success', 'Berhasil mendaftar bantuan sosial, harap tunggu konfirmasi dari admin.');
     }
 }
