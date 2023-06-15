@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <span>Saldo</span>
-                <h5 class="card-title text-nowrap mb-0">Rp 1.000.000</h5>
+                <h5 class="card-title text-nowrap mb-0" id="saldo">Rp 0</h5>
             </div>
 
             <hr class="my-0">
@@ -136,6 +136,7 @@
 @include('public.components.modal-welcome')
 
 @push('js')
+<script src="{{ URL::asset('/assets/js/saldo-dashboard.js') }}"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function(){
         var element = document.getElementById("myToast");

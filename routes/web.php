@@ -48,6 +48,7 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function(){
         Route::get('/pendaftaran/{id}', 'getPendaftaran');
 
         Route::get('/kelola-pendaftaran', 'index')->name('index');
+        Route::post('/persetujuan-pendaftaran', 'persetujuanPendaftaran')->name('persetujuan');
     });
 });
 
@@ -55,6 +56,8 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function(){
 Route::group(['middleware' => ['auth', 'role:public']], function() {
     Route::get('/dashboard', [PublicController::class, 'index'])->name('dashboard');
     Route::post('/bayar-listrik', [PublicController::class, 'pembayaranListrik'])->name('pembayaran.listrik');
+    Route::get('/get-saldo', [PublicController::class,'getSaldo']);
+
 
     Route::controller(BantuanSosialController::class)->name('bansos.')->middleware('auth')->group(function () {
         Route::get('/informasi-bantuan', 'informasiBantuan')->name('informasi-bantuan');

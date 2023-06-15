@@ -48,7 +48,7 @@
                                     Ditolak
                                 </span>
                                 @elseif($user->registrations->bansos_state->value === 'success')
-                                <span class="badge bg-danger">
+                                <span class="badge bg-success">
                                     Berhasil
                                 </span>
                                 @endif

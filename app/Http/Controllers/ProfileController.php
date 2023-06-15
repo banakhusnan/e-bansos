@@ -16,7 +16,7 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $detailUser = DetailUser::where('id', auth()->user()->id)->first();
+        $detailUser = DetailUser::where('user_id', auth()->user()->id)->first();
 
         $nameParts = explode(' ', auth()->user()->name);
 

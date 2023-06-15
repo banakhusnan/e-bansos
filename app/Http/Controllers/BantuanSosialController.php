@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Wallet;
 use App\Models\DetailUser;
 use App\Models\Registration;
 use Illuminate\Http\Request;
-// use Illuminate\Routing\Controller;
 
 class BantuanSosialController extends Controller
 {
@@ -43,11 +43,17 @@ class BantuanSosialController extends Controller
             return redirect()->route('bansos.pendaftaran')->with('dangerToast', 'Data kamu belum lengkap, harap lengkapi terlebih dahulu');
         }
 
-        Registration::where('user_id', auth()->user()->id)->update([
+        Registration::create([
+            'user_id' => auth()->user()->id,
             'registration_state' => 1,
             'bansos_state' => 'process',
         ]);
-        
+
+        // Add user id in wallet
+        Wallet::create([
+            'user_id' => auth()->user()->id,
+        ]);
+
         return redirect()->route('bansos.informasi-bantuan')->with('success', 'Berhasil mendaftar bantuan sosial, harap tunggu konfirmasi dari admin.');
     }
 }

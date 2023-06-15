@@ -17,6 +17,7 @@ class DetailPendaftaranResource extends JsonResource
         $name = explode(' ', $this->name);
 
         return [
+            'id' => $this->id,
             'alamat' => $this->detail_users->address,
             'namaAwal' => $name[0],
             'namaAkhir' => implode(' ' ,array_slice($name, 1, count($name))),
@@ -25,6 +26,7 @@ class DetailPendaftaranResource extends JsonResource
             'nik' => $this->detail_users->nik,
             'date_of_birth' => $this->detail_users->date_of_birth,
             'no_handphone' => $this->detail_users->no_handphone,
+            'bansos_state' => $this->registrations->bansos_state
         ];
     }
 }

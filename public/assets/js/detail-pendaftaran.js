@@ -8,7 +8,28 @@ detailButton.forEach((element) => {
             method: "GET",
             success: (res) => {
                 const response = res.data;
+
+                // Fill the data to modal
                 modalDetailUser(response);
+
+                // Give attribute (onclick) when click button
+                const buttonActionModal =
+                    document.getElementById("toActionModal");
+
+                // Give parameter (nama awal and id from user);
+                buttonActionModal.setAttribute(
+                    "onclick",
+                    "persetujuanPendaftaran('" +
+                        response.namaAwal +
+                        "', '" +
+                        response.id +
+                        "')"
+                );
+
+                if (response.bansos_state == "success") {
+                    buttonActionModal.setAttribute("data-bs-toggle", "");
+                    buttonActionModal.setAttribute("data-bs-target", "");
+                }
             },
             error: (e) => {
                 console.error(e.responseJSON.message);
@@ -41,4 +62,84 @@ detailButton.forEach((element) => {
         modalBootstrap = new bootstrap.Modal(modal);
         modalBootstrap.show();
     }
+});
+
+function persetujuanPendaftaran(nama, id) {
+    const checkBox = document.getElementById("setuju");
+    const namaPenerima = document.getElementById("namaPenerima");
+
+    // add nama
+    namaPenerima.textContent = nama;
+    checkBox.value = id;
+}
+
+const bansosState = document.getElementById("statusBansos");
+bansosState.addEventListener("change", () => {
+    const showBansosState = document.getElementById("showStatusBansos");
+    const showBantuan = document.getElementById("showBantuan");
+
+    if (bansosState.value === "gagal") {
+        showBansosState.textContent = "Menolak";
+        showBantuan.textContent = "";
+    } else if (bansosState.value === "berhasil") {
+        showBansosState.textContent = "Menyetujui";
+        showBantuan.textContent = "dengan jumlah bantuan sebesar Rp 600.000?";
+    }
+});
+
+const form = document.getElementById("formPersetujuan");
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    console.log(event.srcElement.action);
+    const iconButton = form.querySelector("#spinner");
+
+    // Action
+    const action = form.dataset.action;
+    // Method
+    const method = form.method;
+    // Data Input
+    const data = new FormData(form);
+
+    $.ajax({
+        url: action,
+        method: method,
+        data: data,
+        contentType: false,
+        processData: false,
+        beforeSend: () => {
+            iconButton.classList.add(
+                "spinner-border",
+                "text-light",
+                "spinner-border-sm"
+            );
+            iconButton.setAttribute("role", "status");
+        },
+        success: function (response) {
+            window.location.href = response.data;
+            return true;
+        },
+        error: function (response) {
+            console.log(response);
+        },
+        complete: function () {
+            iconButton.classList.remove(
+                "spinner-border",
+                "text-light",
+                "spinner-border-sm"
+            );
+        },
+    });
+});
+
+const checkBox = document.getElementById("setuju");
+
+// Give Error Message
+checkBox.addEventListener("invalid", () => {
+    checkBox.setCustomValidity(
+        "Harap ceklist terlebih dahulu sebelum menyetujui pendaftaran"
+    );
+});
+checkBox.addEventListener("change", () => {
+    checkBox.setCustomValidity("");
 });
