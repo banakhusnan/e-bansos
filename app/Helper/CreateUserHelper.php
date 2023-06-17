@@ -22,6 +22,7 @@ class CreateUserHelper{
 
         Registration::create([
             'user_id' => $user->id,
+            'bansos_state' => 'unregistered',
         ]);
 
         return $user;

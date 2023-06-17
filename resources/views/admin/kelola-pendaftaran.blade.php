@@ -47,6 +47,10 @@
                                 <span class="badge bg-danger">
                                     Ditolak
                                 </span>
+                                @elseif($user->registrations->bansos_state->value === 'unregistered')
+                                <span class="badge bg-danger">
+                                    Belum Terdaftar
+                                </span>
                                 @elseif($user->registrations->bansos_state->value === 'success')
                                 <span class="badge bg-success">
                                     Berhasil
