@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['listrik', 'air', 'internet']);
+            $table->string('type');
             $table->integer('amount');
             $table->integer('price');
             $table->timestamps();
