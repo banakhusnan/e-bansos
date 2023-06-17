@@ -13,7 +13,7 @@ class PaymentSeeder extends Seeder
      */
     public function run(): void
     {
-        $types = ['listrik', 'air', 'internet'];
+        $types = ['electricity', 'water', 'internet'];
         $prices = [50000, 100000, 150000, 200000];
 
         foreach ($types as $type) {
