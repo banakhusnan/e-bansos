@@ -23,7 +23,7 @@
                                 <li>
                                     <a class="dropdown-item" role="button" id="toActionModal" data-bs-toggle="modal"
                                         data-bs-target="#actionModal">
-                                        Setujui sbg Penerima Bansos
+                                        Persetujuan Bantuan Sosial
                                     </a>
                                 </li>
                             </ul>

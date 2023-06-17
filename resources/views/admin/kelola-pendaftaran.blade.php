@@ -21,7 +21,7 @@
                             <th class="text-center">Nama</th>
                             <th class="text-center">Status Pendaftaran</th>
                             <th class="text-center">Status Bansos</th>
-                            <th class="text-center">Email</th>
+                            <th class="text-center">Tanggal Pendaftaran</th>
                             <th class="text-center">Aksi</th>
                         </tr>
                     </thead>
@@ -57,7 +57,7 @@
                                 </span>
                                 @endif
                             </td>
-                            <td class="text-center">{{ $user->email }}</td>
+                            <td class="text-center">{{ $user->registrations->created_at->format('d M, Y') }}</td>
                             <td class="text-center">
                                 <a type="button" data-id="{{ $user->id }}" title="Detail"
                                     class="badge bg-label-primary text-decoration-none" name="detailButton">
