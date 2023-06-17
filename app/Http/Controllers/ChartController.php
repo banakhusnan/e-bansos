@@ -11,9 +11,9 @@ class ChartController extends Controller
     {
         // take payment type
         $types = [];
-        $paymentType = Payment::groupBy('type')->select('type')->get()->toArray(); 
+        $paymentType = Payment::groupBy('type')->pluck('type')->toArray(); 
         foreach ($paymentType as $payment) {
-            array_push($types, $payment['type']);
+            array_push($types, $payment->name);
         }
 
         return response()->json($types);
