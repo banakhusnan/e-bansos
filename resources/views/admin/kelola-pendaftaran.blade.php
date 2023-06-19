@@ -57,7 +57,10 @@
                                 </span>
                                 @endif
                             </td>
-                            <td class="text-center">{{ $user->registrations->created_at->format('d M, Y') }}</td>
+                            <td class="text-center">
+                                {{ $user->registrations->registration_date ?
+                                date('d M, Y', strtotime($user->registrations->registration_date)) : '-' }}
+                            </td>
                             <td class="text-center">
                                 <a type="button" data-id="{{ $user->id }}" title="Detail"
                                     class="badge bg-label-primary text-decoration-none" name="detailButton">

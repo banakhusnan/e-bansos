@@ -16,6 +16,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->boolean('registration_state')->default(0);
             $table->string('bansos_state')->nullable();
+            $table->integer('bansos_fund')->default(0);
+            $table->date('registration_date')->nullable();
+            $table->date('approval_date')->nullable();
             $table->timestamps();
         });
     }
