@@ -14,10 +14,16 @@ function formatCurrency(amount) {
     const number = parseInt(amount);
 
     // Mengubah bilangan bulat menjadi format mata uang
-    const currency = new Intl.NumberFormat("id-ID", {
-        style: "currency",
-        currency: "IDR",
-    }).format(number);
+    if (amount === 0) {
+        const currency = "Rp 0";
 
-    return currency;
+        return currency;
+    } else {
+        const currency = new Intl.NumberFormat("id-ID", {
+            style: "currency",
+            currency: "IDR",
+        }).format(number);
+
+        return currency;
+    }
 }

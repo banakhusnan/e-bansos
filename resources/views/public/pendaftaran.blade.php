@@ -18,7 +18,7 @@
 <div class="card">
     <div class="card-body">
         {{-- Jika sudah terdaftar --}}
-        @if ($data->status_pendaftaran == 1)
+        @if ($registration_state != 0)
         <div class="card">
             <div class="card-body">
                 <h3 class="fw-bold d-flex align-items-center text-success">
@@ -27,10 +27,9 @@
                 Kamu sudah melakukan pendaftaran, harap tunggu konfirmasi mengenai bantuan dari admin.
             </div>
         </div>
-        @endif
 
         {{-- Jika belum mendaftar --}}
-        @if ($data->status_pendaftaran == 0)
+        @else
         <div class="row mb-3">
             <div class="col-md-12">
                 <p class="mb-1">
