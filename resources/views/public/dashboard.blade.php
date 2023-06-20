@@ -100,31 +100,24 @@
         </a>
     </div>
     <div class="col-md-4 mb-3">
-        <div class="card">
-            <div class="card-body">
-                <div class="d-flex align-items-start justify-content-between mb-3">
-                    <img src="{{ url('https://indihome.co.id/images/logo_indiHome.png') }}" height="67px" alt="PDAM" />
-
-                    <div class="dropdown">
-                        <button class="btn p-0" type="button" id="cardOpt6" data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <i class="bx bx-dots-vertical-rounded"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
-                            <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                            <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                        </div>
+        <a role="button" data-bs-toggle="modal" data-bs-target="#pembayaranInternet">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-start justify-content-between mb-3">
+                        <img src="{{ url('https://indihome.co.id/images/logo_indiHome.png') }}" height="67px"
+                            alt="PDAM" />
                     </div>
+                    <span>Pembayaran Internet</span>
+                    <h3 class="card-title text-nowrap mb-1">Indihome</h3>
                 </div>
-                <span>Pembayaran Internet</span>
-                <h3 class="card-title text-nowrap mb-1">Indihome</h3>
             </div>
-        </div>
+        </a>
     </div>
 </div>
 
 @include('public.components.modal-listrik')
 @include('public.components.modal-air')
+@include('public.components.modal-internet')
 @include('public.components.modal-welcome')
 
 

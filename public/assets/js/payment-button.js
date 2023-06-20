@@ -43,6 +43,26 @@ function selectCardWater(card, value) {
     inputTotalNominal.textContent = formatter;
 }
 
+function selectCardInternet(card, value) {
+    // Selected
+    if (selectedCard) {
+        selectedCard.children[0].classList.remove("bg-secondary", "text-white");
+    }
+    selectedCard = card;
+    selectedCard.children[0].classList.add("bg-secondary", "text-white");
+
+    // Tambah nilai pada tag input
+    const nominalInput = document.querySelector('[name="nominalInternet"]');
+    nominalInput.value = value;
+
+    // Tambah format Rupiah
+    const formatter = switchToRupiah(value);
+
+    // Tampilkan nominal
+    const inputTotalNominal = document.getElementById("totalNominalInternet");
+    inputTotalNominal.textContent = formatter;
+}
+
 function switchToRupiah(number) {
     let rupiah = number.toString();
     let thousandSeparator = ".";

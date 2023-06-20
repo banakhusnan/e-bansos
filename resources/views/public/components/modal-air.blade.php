@@ -95,7 +95,7 @@
                                     <div class="card-body">
                                         <div class="d-flex align-items-center gap-2">
                                             <img src="{{ URL::asset('/assets/img/logo/bansos-logo.png') }}"
-                                                alt="bansos-logo" width="20%">
+                                                alt="bansos-logo" width="30%">
 
                                             <h6 class="mb-0 fw-bold">ebansos pay</h6>
                                         </div>

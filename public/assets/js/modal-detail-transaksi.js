@@ -39,6 +39,8 @@ function showData(data) {
         setImage(
             "https://img.antaranews.com/cache/800x533/2017/07/20170703logo-pdam-001ilustrasi1.jpg"
         );
+    } else if (data.type === "Internet") {
+        setImage("https://indihome.co.id/images/logo_indiHome.png");
     }
 
     customerId.textContent = data.customerId;
