@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ListrikRequest extends FormRequest
+class AirRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -15,7 +15,7 @@ class ListrikRequest extends FormRequest
     {
         return [
             'no_pelanggan' => ['required', 'min:10'],
-            'nominalListrik' => ['required'],
+            'nominalWater' => ['required'],
         ];
     }
 }

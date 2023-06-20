@@ -9,8 +9,7 @@
             <div class="modal-body">
                 <div class="row align-items-center mb-3">
                     <div class="col-md-4">
-                        <img src="{{ url('https://ifoxsoft.com/wp-content/uploads/2022/10/Logo-Listrik-Pintar-PNG-%E2%80%93-ifoxsoft.com_.webp') }}"
-                            alt="Listrik Pintar" width="100%">
+                        <img id="image">
                     </div>
                     <div class="col-md-8">
                         <h4 class="mb-1 fw-bold">Pembelian <span id="type"></span></h4>

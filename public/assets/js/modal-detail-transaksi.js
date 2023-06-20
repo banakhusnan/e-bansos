@@ -31,6 +31,16 @@ function showData(data) {
     const pay = document.getElementById("pay");
     const paymentMethod = document.getElementById("paymentMethod");
 
+    if (data.type === "Listrik") {
+        setImage(
+            "https://ifoxsoft.com/wp-content/uploads/2022/10/Logo-Listrik-Pintar-PNG-%E2%80%93-ifoxsoft.com_.webp"
+        );
+    } else if (data.type === "Air") {
+        setImage(
+            "https://img.antaranews.com/cache/800x533/2017/07/20170703logo-pdam-001ilustrasi1.jpg"
+        );
+    }
+
     customerId.textContent = data.customerId;
     type.textContent = data.type;
     amount.textContent = data.amount + " Pcs";
@@ -59,4 +69,10 @@ function formatCurrency(amount) {
 
         return currency;
     }
+}
+
+function setImage(url) {
+    const image = document.getElementById("image");
+    image.setAttribute("src", url);
+    image.setAttribute("width", "100%");
 }

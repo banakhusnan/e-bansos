@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <span>Saldo</span>
-                <h5 class="card-title text-nowrap mb-0" id="saldo">Rp 0</h5>
+                <h5 class="card-title text-nowrap mb-0" id="saldo"></h5>
             </div>
 
             <hr class="my-0">
@@ -72,7 +72,7 @@
 </div>
 <div class="row">
     <div class="col-md-4 mb-3">
-        <a role="button" class="" data-bs-toggle="modal" data-bs-target="#pembayaranListrik">
+        <a role="button" data-bs-toggle="modal" data-bs-target="#pembayaranListrik">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-start justify-content-between mb-3">
@@ -86,27 +86,18 @@
         </a>
     </div>
     <div class="col-md-4 mb-3">
-        <div class="card">
-            <div class="card-body">
-                <div class="d-flex align-items-start justify-content-between mb-3">
-                    <img src="{{ url('https://img.antaranews.com/cache/800x533/2017/07/20170703logo-pdam-001ilustrasi1.jpg') }}"
-                        height="67px" alt="PDAM" />
-
-                    <div class="dropdown">
-                        <button class="btn p-0" type="button" id="cardOpt6" data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <i class="bx bx-dots-vertical-rounded"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
-                            <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                            <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                        </div>
+        <a role="button" data-bs-toggle="modal" data-bs-target="#pembayaranAir">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-start justify-content-between mb-3">
+                        <img src="{{ url('https://img.antaranews.com/cache/800x533/2017/07/20170703logo-pdam-001ilustrasi1.jpg') }}"
+                            height="67px" alt="PDAM" />
                     </div>
+                    <span>Pembayaran Air Bersih</span>
+                    <h3 class="card-title text-nowrap mb-1">PDAM</h3>
                 </div>
-                <span>Pembayaran Air Bersih</span>
-                <h3 class="card-title text-nowrap mb-1">PDAM</h3>
             </div>
-        </div>
+        </a>
     </div>
     <div class="col-md-4 mb-3">
         <div class="card">
@@ -133,12 +124,13 @@
 </div>
 
 @include('public.components.modal-listrik')
+@include('public.components.modal-air')
 @include('public.components.modal-welcome')
 
 
 @include('layouts.flash')
 @push('js')
 <script src="{{ URL::asset('/assets/js/saldo-dashboard.js') }}"></script>
-<script src="{{ URL::asset('/assets/js/payment-listrik.js') }}"></script>
+<script src="{{ URL::asset('/assets/js/payment-button.js') }}"></script>
 @endpush
 @endsection

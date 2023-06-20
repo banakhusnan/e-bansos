@@ -41,7 +41,7 @@
 </script>
 @endPushIf
 
-@pushIf($errors->has('nominal') || $errors->has('no_pelanggan'), 'js')
+@pushIf($errors->has('nominalListrik') || $errors->has('nominalWater') || $errors->has('no_pelanggan'), 'js')
 <script>
     const mytoast = document.getElementById('myToast')
     mytoast.classList.replace('bg-primary', 'bg-danger')

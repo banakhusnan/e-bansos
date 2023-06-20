@@ -1,12 +1,23 @@
+const showSaldo = document.querySelector("h5#saldo");
+
 $.ajax({
     url: "get-saldo",
     method: "GET",
+    beforeSend: () => {
+        showSaldo.classList.add("d-flex", "justify-content-between");
+        showSaldo.textContent = "Loading...";
+        showSaldo.appendChild(showLoading());
+    },
     success: (res) => {
-        const showSaldo = document.querySelector("h5#saldo");
         let saldo = formatCurrency(res.data.saldo);
         showSaldo.textContent = saldo;
     },
-    error: (res) => {},
+    error: (res) => {
+        console.error(res.responseJSON.message);
+    },
+    complete: () => {
+        showSaldo.classList.remove("d-flex", "justify-content-between");
+    },
 });
 
 function formatCurrency(amount) {
@@ -26,4 +37,12 @@ function formatCurrency(amount) {
 
         return currency;
     }
+}
+
+function showLoading() {
+    const spinnerDiv = document.createElement("div");
+    spinnerDiv.classList.add("spinner-border", "spinner-border-sm");
+    spinnerDiv.setAttribute("role", "status");
+
+    return spinnerDiv;
 }

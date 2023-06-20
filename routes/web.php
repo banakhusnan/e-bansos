@@ -64,6 +64,7 @@ Route::group(['middleware' => ['auth', 'role:public']], function() {
     // Payment
     Route::controller(PaymentController::class)->prefix('dashboard')->name('pembayaran.')->group(function (){
         Route::post('/bayar-listrik', 'pembayaranListrik')->name('listrik');
+        Route::post('/bayar-air', 'pembayaranAir')->name('air');
     });
 
     // Bantuan Sosial
