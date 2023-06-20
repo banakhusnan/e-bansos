@@ -47,11 +47,13 @@ class KelolaPendaftaranController extends Controller
             $validated = $validator->validated();
 
             // Update registration
-            Registration::where('user_id', $request->id)->update(['bansos_state' => $validated['status']]);
+            Registration::where('user_id', $request->id)->update([
+                'bansos_state' => $validated['status'],
+                'approval_date' => \Carbon\Carbon::now(),
+            ]);
 
             // Add balance in wallet
             $wallet = Wallet::where('user_id', $request->id)->first();
-            $wallet->update(['balance' => 600000]);
 
             // Add Wallet History
             $balanceNew = $wallet->balance + 600000;
@@ -61,6 +63,8 @@ class KelolaPendaftaranController extends Controller
                 'balance_old' => $wallet->balance,
                 'balance_new' => $balanceNew,
             ]);
+
+            $wallet->update(['balance' => 600000]);
 
             DB::commit();
             return PersetujuanPendaftaranHelper::response_json(false, 'Berhasil Menyetujui', route('pendaftaran-admin.index'), 200);

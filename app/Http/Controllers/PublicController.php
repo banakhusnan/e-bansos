@@ -15,11 +15,6 @@ class PublicController extends Controller
         ]);
     }
 
-    public function pembayaranListrik(Request $request)
-    {
-        dd($request);
-    }
-
     public function getSaldo()
     {
         $wallet = Wallet::where('user_id', auth()->user()->id)->first();

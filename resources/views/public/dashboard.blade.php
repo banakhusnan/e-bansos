@@ -135,51 +135,10 @@
 @include('public.components.modal-listrik')
 @include('public.components.modal-welcome')
 
+
+@include('layouts.flash')
 @push('js')
 <script src="{{ URL::asset('/assets/js/saldo-dashboard.js') }}"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function(){
-        var element = document.getElementById("myToast");
-
-        // Create toast instance
-        var myToast = new bootstrap.Toast(element);
-
-        myToast.show();
-    });
-
-    const nominal = document.querySelectorAll('#nominal')
-    let totalNominal = 0;
-
-    nominal.forEach(element => {
-        element.parentElement.addEventListener('click', ()=>{
-            element.parentElement.classList.toggle('bg-secondary')
-            element.parentElement.classList.toggle('text-white')
-            
-            const nominalInt = parseInt(element.innerText.replace('Rp', '').replace('.', ''))
-            if (!element.parentElement.classList.contains('bg-secondary') && totalNominal > 0) {
-                totalNominal -= nominalInt;
-                return false;
-            } else if(!element.parentElement.classList.contains('bg-secondary') && totalNominal == 0){
-                totalNominal = 0;
-            }
-            totalNominal += nominalInt;
-            const formatter = switchToRupiah(totalNominal)
-
-            const inputTotalNominal = document.getElementById('totalNominal')
-            inputTotalNominal.textContent = formatter
-        })
-    });
-
-    function switchToRupiah(number) {
-        let rupiah = number.toString();
-        let thousandSeparator = '.';
-        let rupiahSymbol = 'Rp ';
-
-        rupiah = rupiah.replace(/\D/g, '');
-        rupiah = rupiah.replace(/(\d)(?=(\d{3})+(?!\d))/g, `$1${thousandSeparator}`);
-        
-        return rupiahSymbol + rupiah;
-    }
-</script>
+<script src="{{ URL::asset('/assets/js/payment-listrik.js') }}"></script>
 @endpush
 @endsection

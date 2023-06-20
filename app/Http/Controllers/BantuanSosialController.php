@@ -52,12 +52,6 @@ class BantuanSosialController extends Controller
             'registration_date' => Carbon::now(),
         ]);
 
-        // Add user id in wallet
-        Wallet::create([
-            'user_id' => auth()->user()->id,
-            'balance' => 0,
-        ]);
-
         return redirect()->route('bansos.informasi-bantuan')->with('success', 'Berhasil mendaftar bantuan sosial, harap tunggu konfirmasi dari admin.');
     }
 }

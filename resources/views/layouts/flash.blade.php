@@ -1,18 +1,18 @@
 <!-- Toast with Placements -->
-<div class="bs-toast toast m-2 position-fixed bottom-0 end-0 bg-primary" role="alert" aria-live="assertive"
-    aria-atomic="true" data-delay="4000" id="myToast" style="z-index: 1000">
-    <div class="toast-header">
-        <i class="bx bx-bell me-2"></i>
-        <div class="me-auto fw-semibold" id="titleToast"></div>
-        <small>Baru Saja</small>
-        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1000">
+    <div class="toast bg-primary" role="alert" aria-live="assertive" aria-atomic="true" data-delay="4000" id="myToast">
+        <div class="toast-header">
+            <i class="bx bx-bell me-2"></i>
+            <div class="me-auto fw-semibold" id="titleToast"></div>
+            <small>Baru Saja</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body pt-0"></div>
     </div>
-    <div class="toast-body"></div>
 </div>
 <!-- Toast with Placements -->
 
-@if (session('dangerToast'))
-@push('js')
+@pushIf(session('dangerToast'),'js')
 <script>
     const mytoast = document.getElementById('myToast')
     mytoast.classList.replace('bg-primary', 'bg-danger')
@@ -24,11 +24,9 @@
     toastBody.innerHTML = '{{ session("dangerToast") }}'
     bsAlert.show();//show it
 </script>
-@endpush
-@endif
+@endPushIf
 
-@if ($message = session('success'))
-@push('js')
+@pushIf(session('success'),'js')
 <script>
     const mytoast = document.getElementById('myToast')
     mytoast.classList.replace('bg-primary', 'bg-success')
@@ -41,5 +39,19 @@
     toastBody.innerHTML = '{{ session("success") }}'
     bsAlert.show();//show it
 </script>
-@endpush
-@endif
+@endPushIf
+
+@pushIf($errors->has('nominal') && $errors->has('no_pelanggan'), 'js')
+<script>
+    const mytoast = document.getElementById('myToast')
+    mytoast.classList.replace('bg-primary', 'bg-danger')
+    var bsAlert = new bootstrap.Toast(mytoast);
+
+    const toastBody = mytoast.querySelector('.toast-body')
+    const titleToast = mytoast.querySelector('#titleToast')
+
+    titleToast.innerHTML = 'Kesalahan'
+    toastBody.innerHTML = 'Masukan id pelanggan atau nominal yang ingin kamu beli.'
+    bsAlert.show();//show it
+</script>
+@endPushIf

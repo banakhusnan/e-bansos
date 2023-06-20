@@ -14,7 +14,7 @@ class PaymentSeeder extends Seeder
     public function run(): void
     {
         $types = ['electricity', 'water', 'internet'];
-        $prices = [50000, 100000, 150000, 200000];
+        $prices = [25000, 50000, 100000, 125000, 150000, 200000];
 
         foreach ($types as $type) {
             foreach ($prices as $price) {

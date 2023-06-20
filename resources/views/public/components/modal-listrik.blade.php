@@ -3,6 +3,7 @@
     aria-labelledby="pembayaranListrikLabel" aria-hidden="true">
     <form action="{{ route('pembayaran.listrik') }}" method="post" id="formListrik">
         @csrf
+        <input type="hidden" value="" name="nominal">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -20,7 +21,8 @@
                         <div class="col-md-12">
                             <h6 class="mb-2">No Meter/ID Pelanggan</h6>
                             <div class="input-group">
-                                <input type="text" placeholder="Masukan no meter/id pelanggan" class="form-control">
+                                <input name="no_pelanggan" type="text" placeholder="Masukan no meter/id pelanggan"
+                                    class="form-control">
                             </div>
                         </div>
                     </div>
@@ -29,7 +31,7 @@
                     <div class="row mb-3">
                         <h6 class="mb-2">Nominal</h6>
                         <div class="col-md-4 mb-3">
-                            <a href="#">
+                            <a href="#" onclick="selectCard(this, 25000)">
                                 <div class="card">
                                     <div class="card-body py-2" id="nominal">
                                         Rp 25.000
@@ -38,7 +40,7 @@
                             </a>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <a href="#">
+                            <a href="#" onclick="selectCard(this, 50000)">
                                 <div class="card">
                                     <div class="card-body py-2" id="nominal">
                                         Rp 50.000
@@ -47,7 +49,7 @@
                             </a>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <a href="#">
+                            <a href="#" onclick="selectCard(this, 100000)">
                                 <div class="card">
                                     <div class="card-body py-2" id="nominal">
                                         Rp 100.000
@@ -56,7 +58,7 @@
                             </a>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <a href="#">
+                            <a href="#" onclick="selectCard(this, 125000)">
                                 <div class="card">
                                     <div class="card-body py-2" id="nominal">
                                         Rp 125.000
@@ -65,7 +67,7 @@
                             </a>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <a href="#">
+                            <a href="#" onclick="selectCard(this, 150000)">
                                 <div class="card">
                                     <div class="card-body py-2" id="nominal">
                                         Rp 150.000
@@ -74,7 +76,7 @@
                             </a>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <a href="#">
+                            <a href="#" onclick="selectCard(this, 200000)">
                                 <div class="card">
                                     <div class="card-body py-2" id="nominal">
                                         Rp 200.000
