@@ -91,7 +91,6 @@ const form = document.getElementById("formPersetujuan");
 form.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    console.log(event.srcElement.action);
     const iconButton = form.querySelector("#spinner");
 
     // Action
@@ -120,7 +119,7 @@ form.addEventListener("submit", (event) => {
             return true;
         },
         error: function (response) {
-            console.log(response);
+            console.error(response.responseJSON.message);
         },
         complete: function () {
             iconButton.classList.remove(

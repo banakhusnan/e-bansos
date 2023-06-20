@@ -54,7 +54,7 @@
                     </li>
                     @if (auth()->user()->hasRole('public'))
                     <li>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="{{ route('transaksi.index') }}">
                             <i class='bx bx-money me-2'></i>
                             <span class="align-middle">Transaksi</span>
                         </a>

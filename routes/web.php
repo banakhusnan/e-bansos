@@ -6,6 +6,7 @@ use App\Http\Controllers\ChartController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TransactionReportController;
 use App\Http\Controllers\BantuanSosialController;
 use App\Http\Controllers\KelolaPenggunaController;
 use App\Http\Controllers\KelolaPendaftaranController;
@@ -56,6 +57,8 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function(){
 // For Role Public
 Route::group(['middleware' => ['auth', 'role:public']], function() {
     Route::get('/dashboard', [PublicController::class, 'index'])->name('dashboard');
+
+    // Return of JSON
     Route::get('/get-saldo', [PublicController::class,'getSaldo']);
     
     // Payment
@@ -64,11 +67,18 @@ Route::group(['middleware' => ['auth', 'role:public']], function() {
     });
 
     // Bantuan Sosial
-    Route::controller(BantuanSosialController::class)->name('bansos.')->middleware('auth')->group(function () {
+    Route::controller(BantuanSosialController::class)->name('bansos.')->group(function () {
         Route::get('/informasi-bantuan', 'informasiBantuan')->name('informasi-bantuan');
         Route::get('/pendaftaran', 'pendaftaran')->name('pendaftaran');
         Route::post('/pendaftaran', 'pendaftaranStore');
-        Route::delete('/', 'destroy')->name('destroy');
+    });
+
+    // Laporan Transaksi
+    Route::controller(TransactionReportController::class)->name('transaksi.')->group(function () {
+        Route::get('/transaksi', 'index')->name('index');
+
+        // Return of JSON
+        Route::get('/get-transaksi/{id}', 'getDataTransaction');
     });
 });
 

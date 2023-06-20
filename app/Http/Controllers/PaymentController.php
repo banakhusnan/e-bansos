@@ -23,7 +23,7 @@ class PaymentController extends Controller
         }
 
         Transaction::create([
-            'wallet_id' => $wallet->id,
+            'user_id' => auth()->user()->id,
             'payment_id' => $payment->id,
             'type' => 'electricity',
             'customer_id' => $validatedData['no_pelanggan'],
