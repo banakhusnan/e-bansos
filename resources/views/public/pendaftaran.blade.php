@@ -72,7 +72,7 @@
                         <div class="mb-3 col-md-6">
                             <label for="lastName" class="form-label">Nama Belakang</label>
                             <div class="form-control user-select-none bg-disabled">
-                                {{ implode(' ' ,array_slice($name, 1, count($name))) }}
+                                {{ !empty($name[1]) ? implode(' ' ,array_slice($name, 1, count($name))) : '-' }}
                             </div>
                         </div>
                         <div class="mb-3 col-md-6">
