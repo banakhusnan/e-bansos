@@ -1,14 +1,14 @@
 <!-- Modal Detail Pendaftaran -->
 <div class="modal fade" id="detailPendaftaranModal" tabindex="-1" aria-labelledby="detailPendaftaranModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
                 {{-- <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Pendaftaran</h1> --}}
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="card">
+                <div class="card mb-3">
                     <div class="card-header d-flex justify-content-between align-items-center border-bottom py-2">
                         {{-- Header --}}
                         <h5 class="fw-bold mb-0">Personal Information</h5>
@@ -70,11 +70,47 @@
                         </div>
                     </div>
                 </div>
+                <div class="card mb-3">
+                    <div class="card-body p-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <h6 class="mb-0">Status Pendaftaran</h6>
+                            <p class="mb-0" id="statusPendaftaran"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-body p-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <h6 class="mb-0">Status Bantuan</h6>
+                            <p class="mb-0" id="statusBantuan"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-body p-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <h6 class="mb-0">Tanggal Pendaftaran</h6>
+                            <p class="mb-0" id="tanggalPendaftaran"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-body p-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <h6 class="mb-0">Tanggal Penerimaan Bantuan</h6>
+                            <p class="mb-0" id="tanggalPenerimaanBantuan"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-body p-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <h6 class="mb-0">Dana Bantuan yang Diterima</h6>
+                            <p class="mb-0" id="dataBantuan"></p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            {{-- <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div> --}}
         </div>
     </div>
 </div>
