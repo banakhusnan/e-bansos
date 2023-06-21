@@ -33,7 +33,7 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function(){
     });
 
     Route::controller(ChartController::class)->group(function(){
-        Route::get('/chart', 'statistics');
+        Route::get('/chart', 'showDashboard');
     });
 
     // Kelola Pengguna

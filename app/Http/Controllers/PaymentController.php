@@ -18,10 +18,10 @@ class PaymentController extends Controller
     {
         $validatedData = $request->validated();
 
-        $payment = Payment::where('price', $validatedData['nominalListrik'])->first();
+        $payment = Payment::where('price', $validatedData['nominalElectricity'])->first();
         $wallet = Wallet::where('user_id', auth()->user()->id)->first();
 
-        if($wallet->balance < $validatedData['nominalListrik']){
+        if($wallet->balance < $validatedData['nominalElectricity']){
             return redirect()->route('dashboard')->with('dangerToast', 'Saldo kamu kurang untuk melakukan pembelian');
         }
 
@@ -31,21 +31,21 @@ class PaymentController extends Controller
             'type' => 'electricity',
             'customer_id' => $validatedData['no_pelanggan'],
             'amount' => 1,
-            'price' => $validatedData['nominalListrik'],
+            'price' => $validatedData['nominalElectricity'],
             'pay' => $wallet->balance,
             'payment_method' => 'ebansos',
-            'change' => $wallet->balance - $validatedData['nominalListrik'],
+            'change' => $wallet->balance - $validatedData['nominalElectricity'],
         ]);
 
         $wallet->update([
-            'balance' => $wallet->balance - $validatedData['nominalListrik'],
+            'balance' => $wallet->balance - $validatedData['nominalElectricity'],
         ]);
         
         WalletHistory::create([
             'wallet_id' => $wallet->id,
             'amount' => 1,
             'balance_old' => $wallet->balance,
-            'balance_new' => $wallet->balance - $validatedData['nominalListrik'],
+            'balance_new' => $wallet->balance - $validatedData['nominalElectricity'],
         ]);
 
         return redirect()->route('dashboard')->with('success', 'Berhasil melakukan pembayaran listrik (PLN).');

@@ -15,7 +15,7 @@ class ListrikRequest extends FormRequest
     {
         return [
             'no_pelanggan' => ['required', 'min:10'],
-            'nominalListrik' => ['required'],
+            'nominalElectricity' => ['required'],
         ];
     }
 }

@@ -7,8 +7,8 @@
         <div class="card h-100">
             <div class="card-header d-flex align-items-center justify-content-between pb-0">
                 <div class="card-title mb-0">
-                    <h5 class="m-0 me-2">Order Statistics</h5>
-                    <small class="text-muted">42.82k Total Sales</small>
+                    <h5 class="m-0 me-2">Order Statistik</h5>
+                    <p class="text-muted"><span id="totalSales"></span> Total Pembeli</p>
                 </div>
                 <div class="dropdown">
                     <button class="btn p-0" type="button" id="orederStatistics" data-bs-toggle="dropdown"
@@ -22,11 +22,12 @@
                     </div>
                 </div>
             </div>
+
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <div class="d-flex flex-column align-items-center gap-1">
-                        <h2 class="mb-2">8,258</h2>
-                        <span>Total Orders</span>
+                    <div class="d-flex flex-column">
+                        <h1 class="mb-2" id="totalOrders"></h1>
+                        <span>Transaksi</span>
                     </div>
                     <div id="statisticsChart"></div>
                 </div>
@@ -41,27 +42,26 @@
                         <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                             <div class="me-2">
                                 <h6 class="mb-0">Pembayaran Listrik</h6>
-                                <small class="text-muted">Mobile, Earbuds, TV</small>
+                                <small class="text-muted">PLN Prabayar, Pascabayar</small>
                             </div>
                             <div class="user-progress">
-                                <small class="fw-semibold">82.5k</small>
+                                <small class="fw-semibold" id="totalPriceElectricity">0</small>
                             </div>
                         </div>
                     </li>
                     <li class="d-flex mb-4 pb-1">
                         <div class="avatar flex-shrink-0 me-3">
                             <span class="avatar-initial rounded bg-label-primary">
-                                {{-- <i class="bx bx-closet"></i> --}}
                                 <i class="bi bi-droplet-fill"></i>
                             </span>
                         </div>
                         <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                             <div class="me-2">
                                 <h6 class="mb-0">Pembayaran Air</h6>
-                                <small class="text-muted">T-shirt, Jeans, Shoes</small>
+                                <small class="text-muted">PDAM</small>
                             </div>
                             <div class="user-progress">
-                                <small class="fw-semibold">23.8k</small>
+                                <small class="fw-semibold" id="totalPriceWater">0</small>
                             </div>
                         </div>
                     </li>
@@ -74,10 +74,10 @@
                         <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                             <div class="me-2">
                                 <h6 class="mb-0">Internet</h6>
-                                <small class="text-muted">Fine Art, Dining</small>
+                                <small class="text-muted">Indihome</small>
                             </div>
                             <div class="user-progress">
-                                <small class="fw-semibold">849k</small>
+                                <small class="fw-semibold" id="totalPriceInternet"></small>
                             </div>
                         </div>
                     </li>

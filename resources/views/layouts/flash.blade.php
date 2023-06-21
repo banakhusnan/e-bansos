@@ -41,8 +41,38 @@
 </script>
 @endPushIf
 
-@pushIf($errors->has('nominalInternet') || $errors->has('nominalListrik') || $errors->has('nominalWater') ||
-$errors->has('no_pelanggan'), 'js')
+
+@pushIf(count($errors) > 0 && $errors->has('nominalInternet') || $errors->has('no_pelanggan'), 'js')
+<script>
+    const mytoast = document.getElementById('myToast')
+    mytoast.classList.replace('bg-primary', 'bg-danger')
+    var bsAlert = new bootstrap.Toast(mytoast);
+
+    const toastBody = mytoast.querySelector('.toast-body')
+    const titleToast = mytoast.querySelector('#titleToast')
+
+    titleToast.innerHTML = 'Kesalahan'
+    toastBody.innerHTML = 'Masukan id pelanggan atau nominal yang ingin kamu beli.'
+    bsAlert.show();//show it
+</script>
+@endPushIf
+
+@pushIf(count($errors) > 0 && $errors->has('nominalListrik') || $errors->has('no_pelanggan'), 'js')
+<script>
+    const mytoast = document.getElementById('myToast')
+    mytoast.classList.replace('bg-primary', 'bg-danger')
+    var bsAlert = new bootstrap.Toast(mytoast);
+
+    const toastBody = mytoast.querySelector('.toast-body')
+    const titleToast = mytoast.querySelector('#titleToast')
+
+    titleToast.innerHTML = 'Kesalahan'
+    toastBody.innerHTML = 'Masukan id pelanggan atau nominal yang ingin kamu beli.'
+    bsAlert.show();//show it
+</script>
+@endPushIf
+
+@pushIf(count($errors) > 0 && $errors->has('nominalWater') || $errors->has('no_pelanggan'), 'js')
 <script>
     const mytoast = document.getElementById('myToast')
     mytoast.classList.replace('bg-primary', 'bg-danger')
