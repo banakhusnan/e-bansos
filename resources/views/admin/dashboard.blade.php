@@ -134,7 +134,7 @@
                     </div>
                     <hr class="my-0">
                     <div class="card-body">
-                        <a href="#">View More</a>
+                        <a href="{{ route('kelola-pengguna.index') }}">View More</a>
                     </div>
                 </div>
             </div>
@@ -151,7 +151,7 @@
                     </div>
                     <hr class="my-0">
                     <div class="card-body">
-                        <a href="#">View More</a>
+                        <a href="{{ route('pendaftaran-admin.index') }}">View More</a>
                     </div>
                 </div>
             </div>
