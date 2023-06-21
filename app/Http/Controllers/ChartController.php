@@ -2,21 +2,50 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Payment;
 use App\Models\Transaction;
+use App\Models\Registration;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use App\Http\Resources\ChartResource;
 
 class ChartController extends Controller
 {
     public function showDashboard()
     {
-        $statistics = $this->statistics();
+        $donutChart = $this->donutChart();
+        $areaChart = $this->areaChart();
+        $totalUsers = $this->getUsers();
+        $totalRegistered = $this->getRegistration();
+        $totalTransaction = $this->getTransaction();
 
-        return new ChartResource($statistics);
+        return new ChartResource($donutChart, $areaChart, $totalUsers, $totalRegistered, $totalTransaction);
     }
 
-    protected function statistics()
+    protected function areaChart()
+    {
+        $bansosFund = Registration::sum('bansos_fund');
+        $approvedTotal = Registration::whereNotNull('approval_date')->count();
+
+        $months = [
+            'January', 'February', 'March', 'April',
+            'May', 'June', 'July', 'August',
+            'September', 'October', 'November', 'December'
+        ];
+        $monthlyTotals = [0];
+        foreach ($months as $i => $month) {
+            $monthlyTotals[$i+1] = Registration::whereMonth('approval_date', date('m', strtotime($month)))->count();
+        }
+
+        return response()->json([
+            'monthlyTotals' => $monthlyTotals,
+            'totalBansosFund' => $bansosFund,
+            'approvedTotal' => $approvedTotal,
+        ]);
+    }
+
+    protected function donutChart()
     {
         $transaction = Transaction::all();
 
@@ -71,5 +100,23 @@ class ChartController extends Controller
                 return count($data->pluck($col)->countBy()->toArray());
             }
         }
+    }
+
+    protected function getUsers()
+    {
+        $role = Role::where('name', '<>', 'admin')->first();
+        $user = User::role($role)->count();
+
+        return $user;
+    }
+
+    protected function getRegistration()
+    {
+        return Registration::whereNotNull('registration_date')->count();
+    }
+
+    protected function getTransaction()
+    {
+        return Transaction::all()->count();
     }
 }

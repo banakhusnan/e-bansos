@@ -7,9 +7,13 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ChartResource extends JsonResource
 {
-    public function __construct($statistic)
+    public function __construct($donutChart, $areaChart, $totalUsers, $totalRegistered, $totalTransaction)
     {
-        $this->statistic = $statistic;
+        $this->donutChart = $donutChart;
+        $this->areaChart = $areaChart;
+        $this->totalUsers = $totalUsers;
+        $this->totalRegistered = $totalRegistered;
+        $this->totalTransaction = $totalTransaction;
     }
 
     /**
@@ -19,15 +23,27 @@ class ChartResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $statisctics = $this->statistic->getData();
+        $donut = $this->donutChart->getData();
+        $area = $this->areaChart->getData();
 
         return [
-            'typePayment' => $statisctics->type,
-            'amount' => $statisctics->amount,
-            'totalSales' => $statisctics->totalSales,
-            'totalPriceElectricity' => $statisctics->totalPriceElectricity,
-            'totalPriceWater' => $statisctics->totalPriceWater,
-            'totalPriceInternet' => $statisctics->totalPriceInternet,
+            'donut' => [
+                'typePayment' => $donut->type,
+                'amount' => $donut->amount,
+                'totalSales' => $donut->totalSales,
+                'totalPriceElectricity' => $donut->totalPriceElectricity,
+                'totalPriceWater' => $donut->totalPriceWater,
+                'totalPriceInternet' => $donut->totalPriceInternet,
+            ],
+
+            'area' => [
+                'monthlyTotals' => $area->monthlyTotals,
+                'totalBansosFund' => $area->totalBansosFund,
+                'approvedTotal' => $area->approvedTotal,
+            ],
+            'totalUsers' => $this->totalUsers,
+            'totalRegistered' => $this->totalRegistered,
+            'totalTransaction' => $this->totalTransaction,
         ];
     }
 }

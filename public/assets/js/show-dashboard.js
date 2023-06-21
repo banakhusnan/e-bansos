@@ -2,21 +2,79 @@ $.ajax({
     url: "/admin/chart",
     method: "GET",
     success: (res) => {
-        console.log(res.data);
-        showDataStatisctic(res.data);
-        chart(res.data);
+        showDataStatisctic(res.data.donut);
+        donutChart(res.data.donut);
+        areaChart(res.data.area);
+        showDataAreaChart(res.data.area);
+
+        const totalUsers = document.getElementById("totalUsers");
+        const totalRegistered = document.getElementById("totalRegistered");
+        const totalTransaction = document.getElementById("totalTransaction");
+        totalUsers.textContent = res.data.totalUsers;
+        totalRegistered.textContent = res.data.totalRegistered;
+        totalTransaction.textContent = res.data.totalTransaction;
     },
     error: () => {},
 });
 
-function chart(data) {
+function areaChart(data) {
+    borderColor = config.colors.borderColor;
+
+    const incomeChartEl = document.querySelector("#bantuanChart"),
+        incomeChartConfig = {
+            chart: {
+                stacked: true,
+                type: "bar",
+            },
+            labels: ["Mei", "Juni", "juli", "Agustus"],
+            series: [
+                {
+                    data: [
+                        {
+                            x: "ok",
+                            y: data.monthlyTotals[5],
+                        },
+                        {
+                            x: "ok",
+                            y: data.monthlyTotals[6],
+                            fillColor: "#696cff",
+                        },
+                        {
+                            x: "ok",
+                            y: data.monthlyTotals[7],
+                        },
+                        {
+                            x: "ok",
+                            y: data.monthlyTotals[8],
+                        },
+                    ],
+                },
+            ],
+            legend: {
+                show: false,
+            },
+            plotOptions: {
+                bar: {
+                    distributed: true,
+                    labels: {
+                        show: false,
+                    },
+                },
+            },
+            dataLabels: {
+                enabled: false,
+            },
+        };
+    if (typeof incomeChartEl !== undefined && incomeChartEl !== null) {
+        const incomeChart = new ApexCharts(incomeChartEl, incomeChartConfig);
+        incomeChart.render();
+    }
+}
+
+function donutChart(data) {
     let cardColor = config.colors.white;
     let headingColor = config.colors.headingColor;
     let axisColor = config.colors.axisColor;
-
-    // Ubah tipe data string menjadi integer
-    let amounts = [];
-    data.amount.forEach((i) => amounts.push(parseInt(i)));
 
     // Mengubah bahasa
     const translatedArray = data.typePayment.map((element) => {
@@ -38,7 +96,7 @@ function chart(data) {
                 type: "donut",
             },
             labels: translatedArray,
-            series: amounts,
+            series: data.amount,
             colors: [
                 config.colors.warning,
                 config.colors.primary,
@@ -76,7 +134,7 @@ function chart(data) {
                                 color: headingColor,
                                 offsetY: -15,
                                 formatter: function (val) {
-                                    const totalData = amounts.reduce(
+                                    const totalData = data.amount.reduce(
                                         (a, b) => a + b,
                                         0
                                     );
@@ -137,6 +195,33 @@ function showDataStatisctic(data) {
     totalPriceInternet.textContent = formatCurrency(data.totalPriceInternet);
 }
 
+function showDataAreaChart(data) {
+    const totalBansosFund = document.getElementById("totalBansosFund");
+    const approvedTotal = document.getElementById("approvedTotal");
+
+    totalBansosFund.textContent = formatRupiah(data.totalBansosFund);
+    approvedTotal.textContent = data.approvedTotal;
+}
+
 function formatCurrency(money) {
     return (money / 1000).toLocaleString("en-US") + "K";
+}
+
+function formatRupiah(amount) {
+    // Mengubah string menjadi bilangan bulat
+    const number = parseInt(amount);
+
+    // Mengubah bilangan bulat menjadi format mata uang
+    if (amount === 0) {
+        const currency = "Rp 0";
+
+        return currency;
+    } else {
+        const currency = new Intl.NumberFormat("id-ID", {
+            style: "currency",
+            currency: "IDR",
+        }).format(number);
+
+        return currency;
+    }
 }

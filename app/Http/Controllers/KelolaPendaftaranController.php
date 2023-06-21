@@ -49,6 +49,7 @@ class KelolaPendaftaranController extends Controller
             // Update registration
             Registration::where('user_id', $request->id)->update([
                 'bansos_state' => $validated['status'],
+                'bansos_fund' => 600000,
                 'approval_date' => \Carbon\Carbon::now(),
             ]);
 

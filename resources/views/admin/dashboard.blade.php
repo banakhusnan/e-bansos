@@ -7,7 +7,7 @@
         <div class="card h-100">
             <div class="card-header d-flex align-items-center justify-content-between pb-0">
                 <div class="card-title mb-0">
-                    <h5 class="m-0 me-2">Order Statistik</h5>
+                    <h5 class="m-0 me-2">Statistik Pembelian</h5>
                     <p class="text-muted"><span id="totalSales"></span> Total Pembeli</p>
                 </div>
                 <div class="dropdown">
@@ -92,7 +92,7 @@
         <div class="card h-100">
             <div class="card-header">
                 <h5 class="m-0 me-2">Grafik Bantuan Yang Diberikan</h5>
-                <small class="text-muted">810 Total Bantuan yang Diberikan</small>
+                <small class="text-muted"><span id="approvedTotal"></span> Total Bantuan yang Diberikan</small>
             </div>
             <div class="card-body px-0">
                 <div class="tab-content p-0">
@@ -105,13 +105,13 @@
                                 </svg>
                             </div>
                             <div>
-                                <small class="text-muted d-block">Total Biaya Bantuan</small>
+                                <small class="text-muted d-block">Total Dana Bantuan</small>
                                 <div class="d-flex align-items-center">
-                                    <h6 class="mb-0 me-1">Rp 810.000.000</h6>
+                                    <h6 class="mb-0 me-1" id="totalBansosFund">Rp 810.000.000</h6>
                                 </div>
                             </div>
                         </div>
-                        <div id="incomeChart"></div>
+                        <div id="bantuanChart"></div>
                     </div>
                 </div>
             </div>
@@ -130,7 +130,7 @@
                             </div>
                         </div>
                         <span class="d-block mb-1">Total Pengguna / Masyarakat</span>
-                        <h3 class="card-title text-nowrap mb-2">3000</h3>
+                        <h3 class="card-title text-nowrap mb-2" id="totalUsers"></h3>
                     </div>
                     <hr class="my-0">
                     <div class="card-body">
@@ -147,7 +147,7 @@
                             </div>
                         </div>
                         <span class="d-block mb-1">Pendaftaran</span>
-                        <h3 class="card-title text-nowrap mb-2">3000</h3>
+                        <h3 class="card-title text-nowrap mb-2" id="totalRegistered"></h3>
                     </div>
                     <hr class="my-0">
                     <div class="card-body">
@@ -164,7 +164,7 @@
                             </div>
                         </div>
                         <span class="d-block mb-1">Transaksi</span>
-                        <h3 class="card-title text-nowrap mb-2">3000</h3>
+                        <h3 class="card-title text-nowrap mb-2" id="totalTransaction"></h3>
                     </div>
                     <hr class="my-0">
                     <div class="card-body">
