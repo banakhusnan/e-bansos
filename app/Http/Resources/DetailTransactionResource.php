@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -15,6 +16,7 @@ class DetailTransactionResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'name' => User::where('id', $this->user_id)->pluck('name')[0],
             'customerId' => $this->customer_id,
             'type' => $this->type->name,
             'timeRelative' => $this->created_at->diffForHumans(),

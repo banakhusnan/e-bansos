@@ -16,9 +16,9 @@ class Transaction extends Model
         'type' => TypePaymentEnum::class
     ];
 
-    public function wallets()
+    public function users()
     {
-        return $this->belongsTo(Wallet::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function payments()

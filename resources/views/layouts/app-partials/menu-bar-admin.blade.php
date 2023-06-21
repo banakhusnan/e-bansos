@@ -34,6 +34,11 @@
                 <div data-i18n="Analytics">Pendaftaran</div>
             </a>
         </li>
-
+        <li class="menu-item {{ Route::is('transaksi.*') ? 'active' : '' }}">
+            <a href="{{ route('transaksi-admin.index') }}" class="menu-link">
+                <i class="menu-icon tf-icon bi bi-cash-coin"></i>
+                <div data-i18n="Analytics">Transaksi</div>
+            </a>
+        </li>
     </ul>
 </aside>

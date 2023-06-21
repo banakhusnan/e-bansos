@@ -6,10 +6,11 @@ use App\Http\Controllers\ChartController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TransactionReportController;
 use App\Http\Controllers\BantuanSosialController;
 use App\Http\Controllers\KelolaPenggunaController;
+use App\Http\Controllers\TransactionAdminController;
 use App\Http\Controllers\KelolaPendaftaranController;
+use App\Http\Controllers\TransactionReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,14 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function(){
 
         Route::get('/kelola-pendaftaran', 'index')->name('index');
         Route::post('/persetujuan-pendaftaran', 'persetujuanPendaftaran')->name('persetujuan');
+    });
+    
+    // Transaksi
+    Route::controller(TransactionAdminController::class)->name('transaksi-admin.')->group(function(){
+        // Modal
+        Route::get('/transaksi/{id}', 'getTransaction');
+
+        Route::get('/transaksi', 'index')->name('index');
     });
 });
 
